@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../template-web.js"></script>
+    <script src="../jquery.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .newsitem {
+            margin-bottom: 10px;
+            width: 1024px;
+            height: 160px;
+        }
+
+        .newsitem img {
+            float: left;
+            width: 200px;
+            height: 160px;
+
+        }
+
+        .box-right {
+            display: flex;
+            height: 100%;
+            padding-left: 10px;
+            flex-direction: column;
+            justify-content: space-between;
+           
+        }
+
+        .title,
+        .tag,
+        .others {
+
+            padding-top: 20px;
+            flex: 1;
+        }
+
+        .others {
+            padding-top: 40px;
+            height: 5px;
+        }
+        .tag span{
+            background: #ccc;
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 17px;
+        }
+        .others {
+            display: flex;
+            width: 100%;
+
+            flex: 1;
+            font-size: 12px;
+        }
+        #cmt-number {
+            display: inline-block;
+            flex: 1;
+            margin-left: 100px;
+            justify-content:space-between ;
+            
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="newslist">
+
+    </div>
+    
+    
+    <script type="text/html" id="tpl-news">
+        {{data.length}}
+        {{each data}}
+        <div class="newsitem">
+            <img src="{{'http://www.liulongbin.top:3006'+$value.img}}" alt="" srcset="">
+            <div class="box-right">
+                <h3 class="title">{{$value.title}}</h3>
+                <div class="tag" > 
+                    {{each $value.tags.split(',')}}
+                    <span>{{$value}}</span>
+
+                    {{/each}}
+                    
+                    
+                </div>
+                <div class="others " >
+                    <span>{{$value.source}}</span>
+                    <span id="time">{{$value.time | dateStr}}</span>
+                    <span id="cmt-number">评论数:{{$value.cmtcount}}</span>
+                </div>
+    
+            </div>
+    
+        </div>
+
+        {{/each}}
+        
+    </script>
+    <script src="./js/newslist.js"></script>
+
+</body>
+
+</html>
